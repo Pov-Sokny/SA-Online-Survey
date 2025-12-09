@@ -1,9 +1,13 @@
-import Image from "next/image";
+import Question from "@/components/form/Question";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-     <h1 className="text-red-600 text-4xl">Weelcome to my channel</h1>
+    <div className="flex min-h-screen items-start justify-center bg-zinc-200">
+      <div className="text-center space-y-4 ">
+        {/* Use component */}
+        <Question/>
+      </div>
     </div>
   );
 }
