@@ -2,6 +2,7 @@
 
 import { useGetProductsQuery } from "@/redux/services/faskStoreApi"
 import ProductCard from "@/components/ProductCard";
+import HomePage from "@/components/HomePage";
 
 export default function ProductsPage() {
   const { data, isLoading, error } = useGetProductsQuery();
@@ -11,10 +12,13 @@ export default function ProductsPage() {
 
   return (
     <div>
-      <h1>Products</h1>
+      {/* <h1>Products</h1>
       {data?.map((p) => (
         <ProductCard key={p.id} product={p} />
-      ))}
-    </div>
+      ))}/ */}
+      
+         <HomePage/>
+    </div> 
+   
   );
 }
