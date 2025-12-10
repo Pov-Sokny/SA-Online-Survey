@@ -1,13 +1,20 @@
-import Question from "@/components/form/Question";
-import Hero from "@/components/Hero";
+"use client";
 
-export default function Home() {
+import { useGetProductsQuery } from "@/redux/services/faskStoreApi"
+import ProductCard from "@/components/ProductCard";
+
+export default function ProductsPage() {
+  const { data, isLoading, error } = useGetProductsQuery();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Something went wrong</p>;
+
   return (
-    <div className="flex min-h-screen items-start justify-center bg-zinc-200">
-      <div className="text-center space-y-4 ">
-        {/* Use component */}
-        <Question/>
-      </div>
+    <div>
+      <h1>Products</h1>
+      {data?.map((p) => (
+        <ProductCard key={p.id} product={p} />
+      ))}
     </div>
   );
 }
