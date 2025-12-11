@@ -1,18 +1,28 @@
-export const saveToken = (token: string) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("accessToken", token);
-  }
-};
+import type { RootState } from "@/store/index"
 
-export const getToken = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("accessToken");
-  }
-  return null;
-};
+export const isAuthenticated = (state: RootState): boolean => {
+  return !!state.auth.token && !!state.auth.user
+}
 
-export const logout = () => {
-  if (typeof window !== "undefined") {
-    localStorage.removeItem("accessToken");
-  }
-};
+export const getAuthToken = (): string | null => {
+  if (typeof window === "undefined") return null
+  return localStorage.getItem("accessToken")
+}
+
+export const getRefreshToken = (): string | null => {
+  if (typeof window === "undefined") return null
+  return localStorage.getItem("refreshToken")
+}
+
+export const saveTokens = (accessToken: string, refreshToken: string): void => {
+  if (typeof window === "undefined") return
+  localStorage.setItem("accessToken", accessToken)
+  localStorage.setItem("refreshToken", refreshToken)
+}
+
+export const clearTokens = (): void => {
+  if (typeof window === "undefined") return
+  localStorage.removeItem("accessToken")
+  localStorage.removeItem("refreshToken")
+  localStorage.removeItem("user")
+}
